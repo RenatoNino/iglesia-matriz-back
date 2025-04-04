@@ -7,12 +7,12 @@ use App\Http\Modules\Auth\Controllers\RoleController;
 use App\Http\Modules\SystemConfiguration\Controllers\SystemConfigurationController;
 use App\Http\Modules\Testing\TestingController;
 use App\Http\Modules\User\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Modules\MassType\Controllers\MassTypeController;
 
 #rutas publicas
 Route::controller(SystemConfigurationController::class)
-    ->prefix('system_configuration')
+    ->prefix('system-configuration')
     ->group(function () {
         Route::get('general', 'general');
     });
@@ -35,7 +35,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function () {
         });
 
     Route::controller(SystemConfigurationController::class)
-        ->prefix('system_configuration')
+        ->prefix('system-configuration')
         ->group(function () {
             Route::get('list', 'list');
             Route::post('update/{key}', 'update');
@@ -69,5 +69,15 @@ Route::group(['middleware' => [AuthMiddleware::class]], function () {
             Route::put('reset/password/{id}', 'resetPassword');
             Route::put('disable/{id}', 'disable');
             Route::delete('delete/{id}', 'delete');
+        });
+
+
+    Route::controller(MassTypeController::class)
+        ->prefix('mass-type')
+        ->group(function () {
+            Route::get('', 'list');
+            Route::post('', 'create');
+            Route::put('{id}', 'update');
+            Route::delete('{id}', 'delete');
         });
 });

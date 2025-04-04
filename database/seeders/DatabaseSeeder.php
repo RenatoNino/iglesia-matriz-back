@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => $date,
         ]);
 
-        // Options
+        // Menu Principal - Options
         $option_id_home = DB::table('option')->insertGetId([
             'menu_id' => $menu_id_principal,
             'name' => 'Inicio',
@@ -80,6 +80,8 @@ class DatabaseSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+
+        // Menu Preferencias - Options
         $option_id_settings = DB::table('option')->insertGetId([
             'menu_id' => $menu_id_preferencias,
             'name' => 'Ajustes',
@@ -87,6 +89,8 @@ class DatabaseSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+
+        // Menu Acceso Rápido - Options
         $option_id_profile = DB::table('option')->insertGetId([
             'menu_id' => $menu_id_acceso_rapido,
             'name' => 'Mi Perfil',
@@ -94,6 +98,8 @@ class DatabaseSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+
+        // Menu Configuración - Options
         $option_id_users = DB::table('option')->insertGetId([
             'menu_id' => $menu_id_configuracion,
             'name' => 'Usuarios',
@@ -101,8 +107,15 @@ class DatabaseSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+        $option_id_mass_types = DB::table('option')->insertGetId([
+            'menu_id' => $menu_id_configuracion,
+            'name' => 'Tipos de Misa',
+            'name_url' => 'MassTypeList',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
 
-        // Role Options
+        // Role Options- Admin
         DB::table('role_option')->insert([
             'role_id' => $role_id_admin,
             'option_id' => $option_id_home,
@@ -118,6 +131,10 @@ class DatabaseSeeder extends Seeder
         DB::table('role_option')->insert([
             'role_id' => $role_id_admin,
             'option_id' => $option_id_users,
+        ]);
+        DB::table('role_option')->insert([
+            'role_id' => $role_id_admin,
+            'option_id' => $option_id_mass_types,
         ]);
 
         // System Configuration
@@ -158,6 +175,32 @@ class DatabaseSeeder extends Seeder
             'name' => 'Color Primario',
             'type' => 'string',
             'value' => '#7367F0',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+
+        // Mass Types
+        DB::table('mass_type')->insert([
+            'name' => 'Misa de difuntos',
+            'slug' => 'misa-difuntos',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        DB::table('mass_type')->insert([
+            'name' => 'Misa de acción de gracias',
+            'slug' => 'misa-accion-gracias',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        DB::table('mass_type')->insert([
+            'name' => 'Misa de gloria',
+            'slug' => 'misa-gloria',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        DB::table('mass_type')->insert([
+            'name' => 'Misa de salud',
+            'slug' => 'misa-salud',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
