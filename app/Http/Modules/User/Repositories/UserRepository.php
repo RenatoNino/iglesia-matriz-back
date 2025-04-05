@@ -58,7 +58,7 @@ class UserRepository
             ->when($request->filled('search'), function ($query) use ($request) {
                 $query->where(function ($query) use ($request) {
                     $query->where('person.names', 'like', "%$request->search%")
-                        ->orWhere('person.phone', 'like', "%$request->search%")
+                        ->orWhere('person.document_number', 'like', "%$request->search%")
                         ->orWhere('person.email', 'like', "%$request->search%");
                 });
             })
