@@ -4,6 +4,7 @@ use App\Http\Middlewares\AuthMiddleware;
 use App\Http\Modules\Auth\Controllers\AuthController;
 use App\Http\Modules\Auth\Controllers\MenuController;
 use App\Http\Modules\Auth\Controllers\RoleController;
+use App\Http\Modules\MassSchedule\Controllers\MassScheduleController;
 use App\Http\Modules\SystemConfiguration\Controllers\SystemConfigurationController;
 use App\Http\Modules\Testing\TestingController;
 use App\Http\Modules\User\Controllers\UserController;
@@ -74,6 +75,15 @@ Route::group(['middleware' => [AuthMiddleware::class]], function () {
 
     Route::controller(MassTypeController::class)
         ->prefix('mass-type')
+        ->group(function () {
+            Route::get('', 'list');
+            Route::post('', 'create');
+            Route::put('{id}', 'update');
+            Route::delete('{id}', 'delete');
+        });
+
+    Route::controller(MassScheduleController::class)
+        ->prefix('mass-schedule')
         ->group(function () {
             Route::get('', 'list');
             Route::post('', 'create');
