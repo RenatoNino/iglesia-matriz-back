@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MassType extends Model
+class IntentionType extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'mass_type';
+    protected $table = 'intention_type';
 
     protected $fillable = [
         'id',

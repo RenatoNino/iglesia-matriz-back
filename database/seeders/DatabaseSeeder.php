@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             SystemConfigurationSeeder::class,
-            MassTypeSeeder::class,
+            IntentionTypeSeeder::class,
             MassScheduleSeeder::class,
             // Add other seeders here
         ]);

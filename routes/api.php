@@ -9,7 +9,7 @@ use App\Http\Modules\SystemConfiguration\Controllers\SystemConfigurationControll
 use App\Http\Modules\Testing\TestingController;
 use App\Http\Modules\User\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Modules\MassType\Controllers\MassTypeController;
+use App\Http\Modules\IntentionType\Controllers\IntentionTypeController;
 
 #rutas publicas
 Route::controller(SystemConfigurationController::class)
@@ -73,8 +73,8 @@ Route::group(['middleware' => [AuthMiddleware::class]], function () {
         });
 
 
-    Route::controller(MassTypeController::class)
-        ->prefix('mass-type')
+    Route::controller(IntentionTypeController::class)
+        ->prefix('intention-type')
         ->group(function () {
             Route::get('', 'list');
             Route::post('', 'create');

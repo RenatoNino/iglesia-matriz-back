@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Modules\MassType\UseCases;
+namespace App\Http\Modules\IntentionType\UseCases;
 
-use App\Http\Modules\MassType\Repositories\MassTypeRepository;
-use App\Http\Modules\MassType\Helpers\MassTypeHelper;
+use App\Http\Modules\IntentionType\Repositories\IntentionTypeRepository;
+use App\Http\Modules\IntentionType\Helpers\IntentionTypeHelper;
 use App\Http\Utils\ResponseUtil;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class MassTypeUseCases
+class IntentionTypeUseCases
 {
     public static function list(Request $request)
     {
         try {
-            $result = MassTypeRepository::list($request);
+            $result = IntentionTypeRepository::list($request);
             return ResponseUtil::success($result);
         } catch (Exception $e) {
             return ResponseUtil::error($e->getMessage());
@@ -25,8 +25,8 @@ class MassTypeUseCases
     {
         DB::beginTransaction();
         try {
-            MassTypeHelper::validateCreateRequest($request);
-            $result = MassTypeRepository::create($request);
+            IntentionTypeHelper::validateCreateRequest($request);
+            $result = IntentionTypeRepository::create($request);
             DB::commit();
             return ResponseUtil::success($result, 'Tipo de misa creado correctamente');
         } catch (Exception $e) {
@@ -39,8 +39,8 @@ class MassTypeUseCases
     {
         DB::beginTransaction();
         try {
-            MassTypeHelper::validateUpdateRequest($request);
-            $result = MassTypeRepository::update($id, $request);
+            IntentionTypeHelper::validateUpdateRequest($request);
+            $result = IntentionTypeRepository::update($id, $request);
             DB::commit();
             return ResponseUtil::success($result, 'Tipo de misa actualizado correctamente');
         } catch (Exception $e) {
@@ -53,7 +53,7 @@ class MassTypeUseCases
     {
         DB::beginTransaction();
         try {
-            $result = MassTypeRepository::delete($id);
+            $result = IntentionTypeRepository::delete($id);
             DB::commit();
             return ResponseUtil::success($result, 'Tipo de misa eliminado correctamente');
         } catch (Exception $e) {

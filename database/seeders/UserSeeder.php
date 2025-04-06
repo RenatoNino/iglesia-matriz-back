@@ -94,10 +94,10 @@ class UserSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
-        $option_id_mass_types = DB::table('option')->insertGetId([
+        $option_id_intention_types = DB::table('option')->insertGetId([
             'menu_id' => $menu_id_configuracion,
-            'name' => 'Tipos de Misa',
-            'name_url' => 'MassTypeList',
+            'name' => 'Tipos de Intenciones',
+            'name_url' => 'IntentionTypeList',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -149,7 +149,7 @@ class UserSeeder extends Seeder
         ]);
         DB::table('role_option')->insert([
             'role_id' => $role_id_admin,
-            'option_id' => $option_id_mass_types,
+            'option_id' => $option_id_intention_types,
         ]);
         DB::table('role_option')->insert([
             'role_id' => $role_id_admin,

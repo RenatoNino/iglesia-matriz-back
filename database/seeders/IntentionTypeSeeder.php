@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\MassType;
+use App\Models\IntentionType;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class MassTypeSeeder extends Seeder
+class IntentionTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,28 +17,28 @@ class MassTypeSeeder extends Seeder
     {
         $date = Carbon::now();
 
-        MassType::insert([
+        IntentionType::insert([
             [
-                'name' => 'Misa de difuntos',
-                'slug' => 'misa-difuntos',
+                'name' => 'Difuntos',
+                'slug' => 'difuntos',
                 'created_at' => $date,
                 'updated_at' => $date,
             ],
             [
-                'name' => 'Misa de acción de gracias',
-                'slug' => 'misa-accion-gracias',
+                'name' => 'Acción de gracias',
+                'slug' => 'accion-gracias',
                 'created_at' => $date,
                 'updated_at' => $date,
             ],
             [
-                'name' => 'Misa de gloria',
-                'slug' => 'misa-gloria',
+                'name' => 'Gloria',
+                'slug' => 'gloria',
                 'created_at' => $date,
                 'updated_at' => $date,
             ],
             [
-                'name' => 'Misa de salud',
-                'slug' => 'misa-salud',
+                'name' => 'Salud',
+                'slug' => 'salud',
                 'created_at' => $date,
                 'updated_at' => $date,
             ],
