@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             SystemConfigurationSeeder::class,
             IntentionTypeSeeder::class,
             MassScheduleSeeder::class,
+            ReceiptTypeSeeder::class,
+            PaymentMethodSeeder::class,
+            ReceiptNumberSequenceSeeder::class,
             // Add other seeders here
         ]);
     }

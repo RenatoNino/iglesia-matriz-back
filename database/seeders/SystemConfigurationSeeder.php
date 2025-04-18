@@ -45,5 +45,13 @@ class SystemConfigurationSeeder extends Seeder
             'type' => 'string',
             'value' => '#7367F0',
         ]);
+
+        // Prices
+        SystemConfiguration::create([
+            'key' => 'intention_price',
+            'name' => 'Precio de intención',
+            'type' => 'float',
+            'value' => 5,
+        ]);
     }
 }

@@ -56,6 +56,13 @@ class User extends Authenticatable
         ];
     }
 
+    // Validations
+    public function hasRole(int $role_id): bool
+    {
+        return $this->roles()->where('role.id', $role_id)->exists();
+    }
+
+    // Relationships
     public function person(): BelongsTo
     {
         return $this->belongsTo(Person::class);

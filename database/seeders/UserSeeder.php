@@ -101,6 +101,20 @@ class UserSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+        $option_id_intention_register = DB::table('option')->insertGetId([
+            'menu_id' => $menu_id_misas,
+            'name' => 'Registro Intenciones',
+            'name_url' => 'IntentionRegister',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        $option_id_register_history = DB::table('option')->insertGetId([
+            'menu_id' => $menu_id_misas,
+            'name' => 'Historial de Registros',
+            'name_url' => 'IntentionRegisterHistory',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
 
         // Menu Preferencias - Options
         $option_id_settings = DB::table('option')->insertGetId([
@@ -131,29 +145,38 @@ class UserSeeder extends Seeder
         ]);
 
         // Role Options- Admin
-        DB::table('role_option')->insert([
-            'role_id' => $role_id_admin,
-            'option_id' => $option_id_home,
-        ]);
-        DB::table('role_option')->insert([
-            'role_id' => $role_id_admin,
-            'option_id' => $option_id_settings,
-        ]);
-        DB::table('role_option')->insert([
-            'role_id' => $role_id_admin,
-            'option_id' => $option_id_profile,
-        ]);
-        DB::table('role_option')->insert([
-            'role_id' => $role_id_admin,
-            'option_id' => $option_id_users,
-        ]);
-        DB::table('role_option')->insert([
-            'role_id' => $role_id_admin,
-            'option_id' => $option_id_intention_types,
-        ]);
-        DB::table('role_option')->insert([
-            'role_id' => $role_id_admin,
-            'option_id' => $option_id_mass_schedule,
-        ]);
+        $principal_options_for_admin = [
+            $option_id_home,
+        ];
+        $masses_options_for_admin = [
+            $option_id_mass_schedule,
+            $option_id_intention_register,
+            $option_id_register_history,
+        ];
+        $preferences_options_for_admin = [
+            $option_id_settings,
+        ];
+        $configuration_options_for_admin = [
+            $option_id_intention_types,
+            $option_id_users,
+        ];
+        $quick_access_options_for_admin = [
+            $option_id_profile,
+        ];
+
+        $options_for_admin = array_merge(
+            $principal_options_for_admin,
+            $masses_options_for_admin,
+            $preferences_options_for_admin,
+            $configuration_options_for_admin,
+            $quick_access_options_for_admin
+        );
+
+        foreach ($options_for_admin as $option_id) {
+            DB::table('role_option')->insert([
+                'role_id' => $role_id_admin,
+                'option_id' => $option_id,
+            ]);
+        }
     }
 }

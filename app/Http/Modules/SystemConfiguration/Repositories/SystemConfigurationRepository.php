@@ -55,6 +55,13 @@ class SystemConfigurationRepository
         return $system_configuration;
     }
 
+    public static function key(string $key)
+    {
+        $system_configuration_key = SystemConfigurationHelper::getValueByKey($key);
+
+        return $system_configuration_key;
+    }
+
     public static function update(string $key, Request $request)
     {
         RoleHelper::validateAdminAccess();

@@ -6,7 +6,6 @@ use App\Http\Modules\Auth\Enums\RoleEnum;
 use App\Http\Services\SessionManagerService;
 use App\Models\User;
 use Exception;
-use Illuminate\Support\Facades\Log;
 
 class RoleHelper
 {

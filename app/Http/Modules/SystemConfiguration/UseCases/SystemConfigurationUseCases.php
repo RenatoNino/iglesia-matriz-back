@@ -30,6 +30,16 @@ class SystemConfigurationUseCases
         }
     }
 
+    public static function key(string $key)
+    {
+        try {
+            $result = SystemConfigurationRepository::key($key);
+            return ResponseUtil::success($result);
+        } catch (Exception $e) {
+            return ResponseUtil::error($e->getMessage());
+        }
+    }
+
     public static function update(string $key, Request $request)
     {
         DB::beginTransaction();

@@ -4,6 +4,7 @@ namespace App\Http\Modules\MassSchedule\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Modules\MassSchedule\UseCases\MassScheduleUseCases;
+use Illuminate\Http\Request;
 
 class MassScheduleController extends Controller
 {
@@ -12,14 +13,14 @@ class MassScheduleController extends Controller
         return MassScheduleUseCases::list();
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return MassScheduleUseCases::create(request());
+        return MassScheduleUseCases::create($request);
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        return MassScheduleUseCases::update(request(), $id);
+        return MassScheduleUseCases::update($request, $id);
     }
 
     public function delete($id)

@@ -1,0 +1,3 @@
+Registro de intenciones:
+ - Los datos del cliente deben ser obligatorios?
+ - Se debe registrar el dni del cliente?

@@ -18,6 +18,11 @@ class SystemConfigurationController extends Controller
         return SystemConfigurationUseCases::list();
     }
 
+    public function key(string $key)
+    {
+        return SystemConfigurationUseCases::key($key);
+    }
+
     public function update(string $key, Request $request)
     {
         return SystemConfigurationUseCases::update($key, $request);

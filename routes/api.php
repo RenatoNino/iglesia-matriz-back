@@ -4,6 +4,7 @@ use App\Http\Middlewares\AuthMiddleware;
 use App\Http\Modules\Auth\Controllers\AuthController;
 use App\Http\Modules\Auth\Controllers\MenuController;
 use App\Http\Modules\Auth\Controllers\RoleController;
+use App\Http\Modules\Intention\Controllers\IntentionRegisterController;
 use App\Http\Modules\MassSchedule\Controllers\MassScheduleController;
 use App\Http\Modules\SystemConfiguration\Controllers\SystemConfigurationController;
 use App\Http\Modules\Testing\TestingController;
@@ -39,6 +40,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function () {
         ->prefix('system-configuration')
         ->group(function () {
             Route::get('list', 'list');
+            Route::get('key/{key}', 'key');
             Route::post('update/{key}', 'update');
             Route::post('upload/image', 'uploadImage');
             Route::delete('delete/image', 'deleteImage');
@@ -89,5 +91,17 @@ Route::group(['middleware' => [AuthMiddleware::class]], function () {
             Route::post('', 'create');
             Route::put('{id}', 'update');
             Route::delete('{id}', 'delete');
+        });
+
+    Route::controller(IntentionRegisterController::class)
+        ->prefix('intention-register')
+        ->group(function () {
+            Route::get('parameters', 'parameters');
+            Route::post('list', 'list');
+            Route::post('create', 'create');
+            Route::put('update/{id}', 'update');
+            Route::put('update/intention/{id}', 'updateIntention');
+            Route::delete('delete/intention/{id}', 'deleteIntention');
+            Route::delete('delete/{id}', 'delete');
         });
 });
