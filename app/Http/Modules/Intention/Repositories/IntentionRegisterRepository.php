@@ -68,12 +68,12 @@ class IntentionRegisterRepository
         $session = SessionManagerService::get();
         $user = User::where('id', $session->user_id)->first();
 
-        IntentionRegisterHelper::validateCreateRequest($request, $user);
+        IntentionRegisterHelper::validateCreateRequest($request);
 
         // Intention Register
         $intention_price = SystemConfigurationHelper::getValueByKey('intention_price');
 
-        $total_amount = $request->total_amount ?? ($intention_price * count($request->intentions));
+        $total_amount = $intention_price * count($request->intentions);
         $intention_register = IntentionRegister::create([
             'register_by' => $session->user_id,
             'client_name' => $request->client_name,

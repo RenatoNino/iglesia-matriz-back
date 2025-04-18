@@ -24,13 +24,12 @@ class IntentionRegisterHelper
         }
     }
 
-    public static function validateCreateRequest(Request $request, User $user)
+    public static function validateCreateRequest(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'client_name' => 'nullable|string|max:255',
             'client_phone' => 'nullable|string|max:255',
-            'amount_charged' => 'required|numeric|min:0',
-            'total_amount' => 'nullable|numeric|min:0',
+            'amount_charged' => 'required|numeric|gt:0',
             'receipt_type_id' => 'required|exists:receipt_type,id',
             'payment_method_id' => 'required|exists:payment_method,id',
             'intentions' => 'required|array|min:1',
@@ -42,10 +41,6 @@ class IntentionRegisterHelper
 
         if ($validator->fails()) {
             throw new Exception($validator->errors()->first());
-        }
-
-        if (!$user->hasRole(RoleEnum::ADMIN) && $request->has('total_amount')) {
-            throw new Exception("El monto total no puede ser modificado por un usuario que no es administrador.");
         }
     }
 
