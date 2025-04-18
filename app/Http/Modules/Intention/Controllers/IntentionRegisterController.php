@@ -27,11 +27,13 @@ class IntentionRegisterController
         return IntentionRegisterUseCases::update($request, $id);
     }
 
+    // FIXME: Preguntar si esto puede ser posible o si esto modifica el pago
     public function updateIntention(Request $request, int $id)
     {
         return IntentionRegisterUseCases::updateIntention($request, $id);
     }
 
+    // FIXME: Preguntar si esto puede ser posible o si esto modifica el pago
     public function deleteIntention(int $id)
     {
         return IntentionRegisterUseCases::deleteIntention($id);

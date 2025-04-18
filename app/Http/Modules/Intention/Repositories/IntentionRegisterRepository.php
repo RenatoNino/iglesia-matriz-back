@@ -66,7 +66,6 @@ class IntentionRegisterRepository
     public static function create(Request $request)
     {
         $session = SessionManagerService::get();
-        $user = User::where('id', $session->user_id)->first();
 
         IntentionRegisterHelper::validateCreateRequest($request);
 
@@ -82,6 +81,7 @@ class IntentionRegisterRepository
         ]);
 
         // Intentions
+        $now = now();
         $intentions = [];
         foreach ($request->intentions as $intention) {
             $intentions[] = [
@@ -91,6 +91,8 @@ class IntentionRegisterRepository
                 'intention_type_id' => $intention['intention_type_id'],
                 'person_name' => $intention['person_name'],
                 'amount' => $intention_price,
+                'created_at' => $now,
+                'updated_at' => $now,
             ];
         }
         Intention::insert($intentions);
@@ -99,6 +101,7 @@ class IntentionRegisterRepository
         $last_receipt = ReceiptNumberSequence::where('receipt_type_id', $request->receipt_type_id)
             ->first();
         $current_receipt_number = $last_receipt->last_receipt_number + 1;
+        $current_receipt_number = str_pad($current_receipt_number, 7, '0', STR_PAD_LEFT);
 
         PaymentReceipt::create([
             'intention_register_id' => $intention_register->id,
