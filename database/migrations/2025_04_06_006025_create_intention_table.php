@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('intention', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('intention_register_id')->constrained('intention_register')->onDelete('cascade');
+            $table->foreignId('intention_register_id')->constrained('intention_register')->onDelete('cascade')->nullable();
             $table->date('mass_date');
             $table->foreignId('mass_schedule_id')->constrained('mass_schedule')->onDelete('cascade');
             $table->foreignId('intention_type_id')->constrained('intention_type')->onDelete('cascade');

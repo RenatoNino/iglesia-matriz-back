@@ -115,6 +115,13 @@ class UserSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+        $option_id_intentions = DB::table('option')->insertGetId([
+            'menu_id' => $menu_id_misas,
+            'name' => 'Intenciones',
+            'name_url' => 'IntentionList',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
 
         // Menu Preferencias - Options
         $option_id_settings = DB::table('option')->insertGetId([
@@ -152,6 +159,7 @@ class UserSeeder extends Seeder
             $option_id_mass_schedule,
             $option_id_intention_register,
             $option_id_register_history,
+            $option_id_intentions,
         ];
         $preferences_options_for_admin = [
             $option_id_settings,

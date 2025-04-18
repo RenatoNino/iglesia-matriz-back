@@ -4,6 +4,7 @@ use App\Http\Middlewares\AuthMiddleware;
 use App\Http\Modules\Auth\Controllers\AuthController;
 use App\Http\Modules\Auth\Controllers\MenuController;
 use App\Http\Modules\Auth\Controllers\RoleController;
+use App\Http\Modules\Intention\Controllers\IntentionController;
 use App\Http\Modules\Intention\Controllers\IntentionRegisterController;
 use App\Http\Modules\MassSchedule\Controllers\MassScheduleController;
 use App\Http\Modules\SystemConfiguration\Controllers\SystemConfigurationController;
@@ -103,5 +104,15 @@ Route::group(['middleware' => [AuthMiddleware::class]], function () {
             Route::put('update/intention/{id}', 'updateIntention');
             Route::delete('delete/intention/{id}', 'deleteIntention');
             Route::delete('delete/{id}', 'delete');
+        });
+
+    Route::controller((IntentionController::class))
+        ->prefix('intention')
+        ->group(function () {
+            Route::get('parameters', 'parameters');
+            Route::post('list', 'list');
+            Route::post('create', 'create');
+            Route::put('{id}', 'update');
+            Route::delete('{id}', 'delete');
         });
 });
